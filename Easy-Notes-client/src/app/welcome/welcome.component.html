@@ -1,0 +1,34 @@
+<style>
+td,th{
+border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<div class="container">
+	
+<table class="table table-hover" >
+ <thead >
+ <tr >
+ <th>id</th><th>Content</th><th>Created At</th><th>Title</th><th>UpdateAt</th><th>Update</th><th>Delete</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr *ngFor="let todo of todos |paginate:{itemsPerPage:10, currentPage:p}">
+ <th>{{todo.id}}</th>
+ <th>{{todo.content}}</th>
+ <th>{{todo.createdAt | date}}</th>
+ <th>{{todo.title}}</th> 
+ <th>{{todo.updatedAt |date}}</th>
+ <th><button (click)="getUpdate()" class="btn btn-warning">Update</button></th>
+  <th><button (click)="deleteData()" class="btn btn-success">Delete</button></th>
+ </tr>
+ </tbody>
+</table>
+
+</div>
+<pagination-controls (pageChange)="p=$event" align="right"></pagination-controls>
